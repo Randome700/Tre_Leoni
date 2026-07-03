@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tre Leoni Nabeul — Cuisine Italienne Authentique</title>
+<meta name="description" content="Tre Leoni Nabeul — Restaurant italien de prestige au cœur de Nabeul, Tunisie. Cuisine italienne authentique, pâtes fraîches maison, poissons et grillades.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,500;0,9..144,600;1,9..144,500;1,9..144,600&family=Jost:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="https://github.com/Randome700/pics-tre-leoni/blob/main/pic9.jpeg?raw=true">
+<link rel="preconnect" href="https://github.com">
+<link rel="preconnect" href="https://raw.githubusercontent.com">
+<style>
+  :root{
+    --bg:#0b0704;
+    --bg-alt:#120c07;
+    --surface:#171009;
+    --surface-2:#1d140b;
+    --line: rgba(212,175,90,0.16);
+    --cream:#f4ecdd;
+    --cream-dim: rgba(244,236,221,0.62);
+    --cream-faint: rgba(244,236,221,0.38);
+    --gold:#c9a24a;
+    --gold-bright:#e8cd85;
+    --gold-deep:#8a6a20;
+    --it-green:#0f8a45;
+    --it-white:#fbfaf6;
+    --it-red:#c8323f;
+    --radius: 2px;
+    --ease: cubic-bezier(.22,.61,.36,1);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--bg);
+    color:var(--cream);
+    font-family:'Jost', sans-serif;
+    font-weight:300;
+    overflow-x:hidden;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--gold-deep); color:var(--cream);}
+
+  h1,h2,h3,h4, .display{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    letter-spacing:0.01em;
+  }
+
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  button{font-family:inherit; cursor:pointer;}
+
+  .eyebrow{
+    font-family:'Jost', sans-serif;
+    font-size:11.5px;
+    letter-spacing:0.34em;
+    text-transform:uppercase;
+    color:var(--gold);
+    display:inline-flex;
+    align-items:center;
+    gap:14px;
+  }
+  .eyebrow::before{
+    content:'';
+    width:26px;height:1px;
+    background:var(--gold);
+    display:inline-block;
+  }
+
+  .section-head{
+    text-align:center;
+    margin:0 auto 64px;
+    max-width:640px;
+    padding:0 24px;
+  }
+  .section-head h2{
+    font-size:clamp(32px,5vw,52px);
+    font-style:italic;
+    font-weight:500;
+    margin-top:18px;
+    color:var(--cream);
+  }
+  .section-head p{
+    margin-top:16px;
+    color:var(--cream-dim);
+    font-size:15px;
+    line-height:1.8;
+    letter-spacing:0.01em;
+  }
+
+  .container{max-width:1180px; margin:0 auto; padding:0 32px;}
+
+  /* reveal on scroll */
+  .reveal{opacity:0; transform:translateY(28px); transition:opacity 1s var(--ease), transform 1s var(--ease);}
+  .reveal.is-visible{opacity:1; transform:translateY(0);}
+  .reveal-stagger > *{opacity:0; transform:translateY(24px); transition:opacity .9s var(--ease), transform .9s var(--ease);}
+  .reveal-stagger.is-visible > *{opacity:1; transform:translateY(0);}
+  .reveal-stagger.is-visible > *:nth-child(1){transition-delay:.05s;}
+  .reveal-stagger.is-visible > *:nth-child(2){transition-delay:.12s;}
+  .reveal-stagger.is-visible > *:nth-child(3){transition-delay:.19s;}
+  .reveal-stagger.is-visible > *:nth-child(4){transition-delay:.26s;}
+  .reveal-stagger.is-visible > *:nth-child(5){transition-delay:.33s;}
+  .reveal-stagger.is-visible > *:nth-child(6){transition-delay:.40s;}
+
+  /* ============ NAVBAR ============ */
+  .navbar{
+    position:fixed; top:0; left:0; right:0; z-index:200;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:22px 40px;
+    transition: background .5s var(--ease), padding .5s var(--ease), border-color .5s var(--ease);
+    border-bottom:1px solid transparent;
+  }
+  .navbar.scrolled{
+    background:rgba(11,7,4,0.88);
+    backdrop-filter: blur(14px);
+    padding:14px 40px;
+    border-bottom:1px solid var(--line);
+  }
+  .nav-logo{ display:flex; align-items:center; gap:12px; height:72px; }
+  .nav-emblem{
+    width:56px; height:56px; flex-shrink:0;
+    filter: drop-shadow(0 0 10px rgba(201,162,74,0.35)) drop-shadow(0 0 22px rgba(201,162,74,0.15));
+    transition: width .5s var(--ease), height .5s var(--ease), transform .5s var(--ease);
+  }
+  .nav-logo:hover .nav-emblem{ transform:rotate(-6deg) scale(1.06); }
+  .nav-emblem img{ width:100%; height:100%; object-fit:contain; }
+  .navbar.scrolled .nav-emblem{ width:42px; height:42px; }
+  .nav-wordmark{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:600;
+    font-size:22px; letter-spacing:0.01em; line-height:1.15; white-space:nowrap;
+    transition:font-size .5s var(--ease);
+  }
+  .navbar.scrolled .nav-wordmark{ font-size:19px; }
+  .nav-wordmark .tre{ color:var(--it-green); }
+  .nav-wordmark .leo{ color:var(--it-white); }
+  .nav-wordmark .ni{ color:var(--it-red); }
+  .nav-wordmark small{
+    display:block; font-family:'Jost',sans-serif; font-style:normal; font-weight:400;
+    font-size:8.5px; letter-spacing:0.32em; text-transform:uppercase; color:var(--gold-bright);
+    margin-top:4px; opacity:0.85;
+  }
+  .nav-wordmark small::after{
+    content:'';
+    display:block;
+    width:26px; height:1px;
+    margin-top:6px;
+    background:linear-gradient(90deg, var(--gold-bright), transparent);
+    opacity:.7;
+  }
+  .nav-links{display:flex; gap:38px; list-style:none;}
+  .nav-links a{
+    font-size:12px; letter-spacing:0.16em; text-transform:uppercase; color:var(--cream-dim);
+    position:relative; padding-bottom:4px;
+    transition:color .3s ease;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:0; width:0; height:1px; background:var(--gold);
+    transition:width .35s var(--ease);
+  }
+  .nav-links a:hover{color:var(--cream);}
+  .nav-links a:hover::after{width:100%;}
+  .nav-cta{
+    border:1px solid var(--gold-deep); color:var(--gold-bright);
+    font-size:11.5px; letter-spacing:0.18em; text-transform:uppercase;
+    padding:11px 24px; background:transparent; transition:all .4s var(--ease);
+  }
+  .nav-cta:hover{background:var(--gold); color:#161009; border-color:var(--gold);}
+  .nav-burger{display:none; flex-direction:column; gap:5px; background:none; border:none; z-index:210;}
+  .nav-burger span{width:24px; height:1px; background:var(--cream); transition:all .3s ease;}
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative; height:100svh; min-height:640px;
+    display:flex; align-items:center; justify-content:center;
+    overflow:hidden;
+  }
+  .hero-bg-wrap{ position:absolute; inset:0; }
+  .hero-bg-layer{
+    position:absolute; inset:0;
+    background-size:cover; background-position:center;
+    animation: heroZoom 26s ease-in-out infinite alternate;
+    filter:saturate(1.05);
+    opacity:0;
+    transition:opacity 1.8s ease;
+  }
+  .hero-bg-layer.active{ opacity:1; }
+  .hero-bg-layer.blur-up{ filter:saturate(1.05) blur(18px); transform:scale(1.06); }
+  .hero-bg-layer.blur-up.loaded{ filter:saturate(1.05) blur(0px); transform:scale(1); transition:filter 1s ease, transform 1s ease, opacity 1.8s ease; }
+  @keyframes heroZoom{
+    0%{transform:scale(1);}
+    100%{transform:scale(1.12);}
+  }
+  .hero-overlay{
+    position:absolute; inset:0;
+    background:
+      radial-gradient(ellipse at center, rgba(11,7,4,0.35) 0%, rgba(11,7,4,0.78) 68%, rgba(11,7,4,0.96) 100%),
+      linear-gradient(180deg, rgba(11,7,4,0.55) 0%, rgba(11,7,4,0.25) 30%, rgba(11,7,4,0.55) 70%, rgba(11,7,4,0.98) 100%);
+  }
+  .hero-content{
+    position:relative; z-index:2; text-align:center; padding:0 24px;
+    display:flex; flex-direction:column; align-items:center;
+  }
+  .hero-eyebrow{
+    opacity:0;
+    font-size:11px; letter-spacing:0.42em; text-transform:uppercase; color:var(--gold-bright);
+    margin-bottom:30px;
+  }
+  .neon-logo{
+    font-family:'Fraunces', serif;
+    font-style:italic;
+    font-weight:600;
+    font-size:clamp(52px, 11vw, 128px);
+    line-height:1;
+    white-space:nowrap;
+  }
+  .neon-logo .char{ display:inline-block; opacity:0; }
+  .neon-logo .tre{ color:var(--it-green); text-shadow:0 0 6px rgba(15,138,69,0.85), 0 0 22px rgba(15,138,69,0.55), 0 0 60px rgba(15,138,69,0.35); }
+  .neon-logo .leo{ color:var(--it-white); text-shadow:0 0 6px rgba(255,255,255,0.9), 0 0 22px rgba(255,255,255,0.55), 0 0 60px rgba(255,255,255,0.3); }
+  .neon-logo .ni{ color:var(--it-red); text-shadow:0 0 6px rgba(200,50,63,0.85), 0 0 22px rgba(200,50,63,0.55), 0 0 60px rgba(200,50,63,0.35); }
+  .neon-logo.flicker-on{ animation: flicker 5s ease-in-out 1.8s infinite; }
+  @keyframes flicker{
+    0%, 96%, 100%{ filter:brightness(1); }
+    97%{ filter:brightness(0.72); }
+    98%{ filter:brightness(1.06); }
+    99%{ filter:brightness(0.85); }
+  }
+  .hero-divider{
+    width:220px; margin-top:22px;
+    opacity:0;
+  }
+  .hero-divider svg{ width:100%; height:auto; display:block; }
+  .hero-sub{
+    margin-top:22px;
+    font-size:clamp(14px,1.7vw,18px);
+    letter-spacing:0.06em;
+    color:var(--cream-dim);
+    font-style:italic;
+    font-family:'Fraunces',serif;
+    opacity:0;
+  }
+  .hero-nabeul{
+    margin-top:8px;
+    font-size:11px; letter-spacing:0.3em; text-transform:uppercase; color:var(--cream-faint);
+    opacity:0;
+  }
+  .hero-buttons{
+    margin-top:46px; display:flex; gap:20px; flex-wrap:wrap; justify-content:center;
+    opacity:0;
+  }
+  @keyframes fadeUp{ from{opacity:0; transform:translateY(22px);} to{opacity:1; transform:translateY(0);} }
+
+  .btn{
+    padding:15px 36px; font-size:11.5px; letter-spacing:0.2em; text-transform:uppercase;
+    border:1px solid var(--gold-deep); transition:all .45s var(--ease); position:relative;
+  }
+  .btn-solid{ background:var(--gold); color:#181008; border-color:var(--gold); }
+  .btn-solid:hover{ background:var(--gold-bright); box-shadow:0 0 28px rgba(201,162,74,0.4); transform:translateY(-2px); }
+  .btn-outline{ background:transparent; color:var(--cream); border-color:rgba(244,236,221,0.35); }
+  .btn-outline:hover{ border-color:var(--gold); color:var(--gold-bright); transform:translateY(-2px); }
+
+  .scroll-cue{
+    position:absolute; bottom:34px; left:50%; transform:translateX(-50%); z-index:2;
+    display:flex; flex-direction:column; align-items:center; gap:10px;
+    opacity:0;
+  }
+  .scroll-cue .line{ width:1px; height:44px; background:linear-gradient(var(--gold), transparent); animation:scrollLine 2.2s ease-in-out infinite; }
+  @keyframes scrollLine{ 0%{transform:scaleY(0); transform-origin:top;} 50%{transform:scaleY(1); transform-origin:top;} 51%{transform-origin:bottom;} 100%{transform:scaleY(0); transform-origin:bottom;} }
+  .scroll-cue span{ font-size:9.5px; letter-spacing:0.3em; text-transform:uppercase; color:var(--cream-faint); }
+
+  /* ============ ABOUT ============ */
+  .about{ padding:150px 0 130px; background:var(--bg); position:relative; }
+  .about-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:90px; align-items:center;
+  }
+  .about-text .eyebrow{margin-bottom:20px;}
+  .about-text h2{
+    font-size:clamp(30px,4vw,46px); font-style:italic; margin-bottom:28px; color:var(--cream);
+  }
+  .about-text p{ color:var(--cream-dim); line-height:2; font-size:15px; margin-bottom:18px; letter-spacing:0.01em; }
+  .about-stats{ display:flex; gap:50px; margin-top:40px; }
+  .about-stats div b{ display:block; font-family:'Fraunces',serif; font-style:italic; font-size:30px; color:var(--gold-bright); }
+  .about-stats div span{ font-size:10.5px; letter-spacing:0.16em; text-transform:uppercase; color:var(--cream-faint); }
+
+  .about-slider{ position:relative; aspect-ratio:4/5; overflow:hidden; border:1px solid var(--line); }
+  .about-slider::before{
+    content:''; position:absolute; inset:0; z-index:2; pointer-events:none;
+    box-shadow: inset 0 0 60px rgba(0,0,0,0.5);
+  }
+  .about-slider img{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:cover;
+    opacity:0; transition:opacity 1.4s ease;
+  }
+  .about-slider img.active{opacity:1;}
+  .about-slider-curtain{
+    position:absolute; inset:0; z-index:4; background:var(--bg-alt);
+    transform-origin:left; border-right:1px solid var(--line);
+  }
+  .slider-dots{ position:absolute; bottom:20px; right:20px; z-index:3; display:flex; gap:8px; }
+  .slider-dots button{
+    width:7px; height:7px; border-radius:50%; border:1px solid var(--gold-bright); background:transparent; padding:0;
+    transition:all .3s ease;
+  }
+  .slider-dots button.active{ background:var(--gold-bright); }
+
+  .about-quote-scrim{
+    position:absolute; inset:0; z-index:2; pointer-events:none;
+    background:linear-gradient(to top, rgba(11,7,4,0.88) 0%, rgba(11,7,4,0.35) 42%, transparent 65%);
+  }
+  .about-quote{
+    position:absolute; left:26px; right:26px; bottom:52px; z-index:3;
+    opacity:0; transform:translateY(16px);
+  }
+  .about-quote p{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:500;
+    font-size:clamp(16px,2vw,20px); line-height:1.5; color:var(--cream);
+  }
+  .about-quote span{
+    display:block; margin-top:10px; font-size:10px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-bright);
+  }
+
+  /* ============ MENU ============ */
+  .menu{ padding:130px 0 110px; background:var(--bg-alt); position:relative; border-top:1px solid var(--line); border-bottom:1px solid var(--line); }
+  .menu-tabs{
+    display:flex; flex-wrap:wrap; justify-content:center; gap:10px 8px; margin-bottom:64px; padding:0 20px;
+  }
+  .menu-tab{
+    background:transparent; border:1px solid var(--line); color:var(--cream-dim);
+    font-size:11px; letter-spacing:0.14em; text-transform:uppercase; padding:11px 20px;
+    transition:all .35s var(--ease);
+  }
+  .menu-tab:hover{ color:var(--cream); border-color:var(--gold-deep); }
+  .menu-tab.active{ background:var(--gold); color:#181008; border-color:var(--gold); }
+
+  .menu-panel{ display:none; }
+  .menu-panel.active{ display:block; animation: panelIn .6s var(--ease); }
+  @keyframes panelIn{ from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);} }
+
+  .menu-note{
+    text-align:center; color:var(--cream-faint); font-size:12.5px; letter-spacing:0.04em;
+    max-width:520px; margin:-40px auto 48px; font-style:italic; font-family:'Fraunces',serif;
+  }
+
+  .dish-grid{
+    display:grid; grid-template-columns:repeat(2, 1fr); gap:0 56px;
+    max-width:980px; margin:0 auto;
+  }
+  .dish-card{
+    padding:22px 0; border-bottom:1px solid var(--line);
+    display:flex; justify-content:space-between; gap:18px;
+  }
+  .dish-info h4{
+    font-size:16.5px; font-weight:500; font-style:italic; color:var(--cream); letter-spacing:0.01em;
+    display:flex; align-items:center; gap:9px; flex-wrap:wrap;
+  }
+  .dish-badge{
+    font-family:'Jost',sans-serif; font-style:normal; font-weight:500;
+    font-size:8.5px; letter-spacing:0.14em; text-transform:uppercase; color:var(--gold-bright);
+    border:1px solid var(--gold-deep); border-radius:20px; padding:3px 9px; white-space:nowrap;
+  }
+  .pizza-card .dish-badge{ display:inline-block; margin-bottom:8px; }
+  .dish-info p{
+    font-size:12px; color:var(--cream-faint); margin-top:5px; letter-spacing:0.01em; line-height:1.6;
+  }
+  .dish-price{
+    font-family:'Fraunces',serif; font-style:italic; color:var(--gold-bright); font-size:15.5px;
+    white-space:nowrap; align-self:center;
+  }
+
+  .pizza-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:16px;
+    max-width:980px; margin:0 auto;
+  }
+  .pizza-card{
+    border:1px solid var(--line); padding:24px 20px; text-align:center;
+    transition:border-color .4s ease, transform .4s ease;
+  }
+  .pizza-card:hover{ border-color:var(--gold-deep); transform:translateY(-4px); }
+  .pizza-card h4{ font-style:italic; font-size:16px; color:var(--cream); margin-bottom:8px;}
+  .pizza-card p{ font-size:11.5px; color:var(--cream-faint); margin-bottom:14px; line-height:1.6; min-height:34px;}
+  .pizza-card .dish-price{ font-size:15px; }
+
+  /* ============ GALLERY ============ */
+  .gallery{ padding:130px 0; background:var(--bg); }
+  .masonry{
+    columns:4 220px; column-gap:14px; max-width:1180px; margin:0 auto; padding:0 32px;
+  }
+  .masonry-item{
+    break-inside:avoid; margin-bottom:14px; overflow:hidden; position:relative;
+    border:1px solid var(--line);
+  }
+  .masonry-item.pre-reveal{ opacity:0; transform:translateY(26px); }
+  .masonry-item img{
+    width:100%; display:block; transition:transform .8s var(--ease), filter .6s ease;
+    filter:brightness(0.86) saturate(1.02);
+  }
+  .masonry-item:hover img{ transform:scale(1.08); filter:brightness(1) saturate(1.08); }
+  .masonry-item::after{
+    content:''; position:absolute; inset:0; box-shadow: inset 0 0 0 1px rgba(201,162,74,0);
+    transition:box-shadow .5s ease; pointer-events:none;
+  }
+  .masonry-item:hover::after{ box-shadow: inset 0 0 0 1px rgba(201,162,74,0.55), 0 0 30px rgba(201,162,74,0.15); }
+  .masonry-item:focus-visible{ outline:2px solid var(--gold-bright); outline-offset:3px; }
+  .lightbox-btn:focus-visible{ outline:2px solid var(--gold-bright); outline-offset:2px; }
+
+  /* ============ LIGHTBOX ============ */
+  .lightbox{
+    position:fixed; inset:0; z-index:500;
+    background:rgba(6,4,2,0.96);
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; pointer-events:none;
+    transition:opacity .45s var(--ease);
+  }
+  .lightbox.open{ opacity:1; pointer-events:auto; }
+  .lightbox-img{
+    max-width:84vw; max-height:80vh; object-fit:contain;
+    border:1px solid var(--line);
+    opacity:0; transform:scale(0.97);
+    transition:opacity .45s var(--ease), transform .45s var(--ease);
+  }
+  .lightbox-img.show{ opacity:1; transform:scale(1); }
+  .lightbox-btn{
+    position:absolute; background:transparent; border:1px solid var(--line); border-radius:50%;
+    color:var(--cream-dim); width:44px; height:44px; display:flex; align-items:center; justify-content:center;
+    font-size:18px; transition:all .3s ease;
+  }
+  .lightbox-btn:hover{ border-color:var(--gold); color:var(--gold-bright); }
+  .lightbox-close{ top:26px; right:26px; }
+  .lightbox-prev{ left:26px; top:50%; transform:translateY(-50%); }
+  .lightbox-next{ right:26px; top:50%; transform:translateY(-50%); }
+  .lightbox-counter{
+    position:absolute; bottom:28px; left:50%; transform:translateX(-50%);
+    font-size:10.5px; letter-spacing:0.3em; text-transform:uppercase; color:var(--cream-faint);
+  }
+  @media (max-width:640px){
+    .lightbox-prev{ left:10px; width:38px; height:38px; }
+    .lightbox-next{ right:10px; width:38px; height:38px; }
+    .lightbox-close{ top:14px; right:14px; width:38px; height:38px; }
+    .lightbox-img{ max-width:92vw; }
+  }
+
+  /* ============ LOCATION ============ */
+  .location{ padding:130px 0; background:var(--bg-alt); border-top:1px solid var(--line); }
+  .loc-grid{
+    display:grid; grid-template-columns:0.9fr 1.1fr; gap:0; max-width:1100px; margin:0 auto;
+    border:1px solid var(--line);
+  }
+  .loc-info{ padding:60px 50px; display:flex; flex-direction:column; justify-content:center; background:var(--surface); }
+  .loc-info h3{ font-style:italic; font-size:28px; margin-bottom:22px; color:var(--cream); }
+  .loc-line{ display:flex; gap:14px; margin-bottom:20px; align-items:flex-start; }
+  .loc-line .ic{ color:var(--gold); font-size:15px; margin-top:2px; }
+  .loc-line div p{ font-size:14px; color:var(--cream-dim); line-height:1.7; }
+  .loc-line div span{ display:block; font-size:10px; letter-spacing:0.18em; text-transform:uppercase; color:var(--cream-faint); margin-bottom:4px; }
+  .loc-info .btn{ margin-top:14px; align-self:flex-start; }
+  .map-frame{ position:relative; min-height:420px; filter:grayscale(0.35) contrast(1.1) brightness(0.9); }
+  .map-frame iframe{ width:100%; height:100%; min-height:420px; border:0; display:block; }
+
+  /* ============ FOOTER ============ */
+  footer{ background:#080503; padding:80px 0 30px; border-top:1px solid var(--line); }
+  .footer-grid{
+    display:grid; grid-template-columns:1.3fr 1fr 1fr 1fr; gap:50px; padding-bottom:56px;
+  }
+  .footer-brand{ display:flex; flex-direction:column; align-items:flex-start; gap:18px; }
+  .footer-brand img{ height:96px; width:auto; max-width:none; align-self:flex-start; filter: drop-shadow(0 0 12px rgba(201,162,74,0.2)); }
+  .footer-brand p{ font-size:13px; color:var(--cream-faint); line-height:1.8; max-width:280px; }
+  footer h5{
+    font-size:11px; letter-spacing:0.2em; text-transform:uppercase; color:var(--gold-bright); margin-bottom:20px;
+  }
+  footer ul{ list-style:none; display:flex; flex-direction:column; gap:12px; }
+  footer ul a, footer ul li{ font-size:13.5px; color:var(--cream-dim); }
+  footer ul a:hover{ color:var(--gold-bright); }
+  .socials{ display:flex; gap:14px; margin-top:6px; }
+  .socials a{
+    width:36px; height:36px; border:1px solid var(--line); border-radius:50%;
+    display:flex; align-items:center; justify-content:center; font-size:14px; color:var(--cream-dim);
+    transition:all .35s ease;
+  }
+  .socials a:hover{ border-color:var(--gold); color:var(--gold-bright); transform:translateY(-3px); }
+  .footer-bottom{
+    border-top:1px solid var(--line); padding-top:26px; display:flex; justify-content:space-between;
+    flex-wrap:wrap; gap:10px; font-size:11.5px; color:var(--cream-faint); letter-spacing:0.02em;
+  }
+
+  /* ============ RESPONSIVE ============ */
+  @media (max-width:980px){
+    .about-grid{ grid-template-columns:1fr; gap:50px; }
+    .about-slider{ order:-1; aspect-ratio:16/10; }
+    .dish-grid{ grid-template-columns:1fr; }
+    .pizza-grid{ grid-template-columns:repeat(2,1fr); }
+    .loc-grid{ grid-template-columns:1fr; }
+    .footer-grid{ grid-template-columns:1fr 1fr; }
+  }
+  @media (max-width:760px){
+    .nav-links, .nav-cta{ display:none; }
+    .nav-burger{ display:flex; }
+    .navbar.menu-open .nav-links{
+      display:flex; position:fixed; inset:0; height:100svh; width:100%;
+      background:rgba(9,6,3,0.98); flex-direction:column; align-items:center; justify-content:center; gap:34px;
+    }
+    .navbar.menu-open .nav-links a{ font-size:16px; }
+    .masonry{ columns:2 160px; }
+    .pizza-grid{ grid-template-columns:1fr; }
+    .footer-grid{ grid-template-columns:1fr; gap:36px; }
+    .menu-note{ margin-top:-24px; }
+    .hero-nabeul{ padding:0 20px; }
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:.01ms !important; animation-iteration-count:1 !important; transition-duration:.01ms !important; }
+    .hero-bg-layer{ animation:none; }
+  }
+
+  /* ============ PRELOADER ============
+     A quiet curtain-raise: the crest breathes in, a hairline draws itself,
+     then the whole veil lifts. It exists so the hero's own entrance
+     (letters, parallax) never competes with font/image loading jank. */
+  .preloader{
+    position:fixed; inset:0; z-index:999;
+    background:var(--bg);
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column; gap:22px;
+  }
+  .preloader-emblem{
+    width:120px; height:120px; opacity:0;
+    filter: drop-shadow(0 0 14px rgba(201,162,74,0.3)) drop-shadow(0 0 30px rgba(201,162,74,0.15));
+  }
+  @media (max-width:600px){
+    .preloader-emblem{ width:90px; height:90px; }
+  }
+  .preloader-emblem img{ width:100%; height:100%; object-fit:contain; }
+  .preloader-line{
+    width:1px; height:0; background:linear-gradient(var(--gold), var(--gold-bright));
+  }
+  .preloader.done{ pointer-events:none; }
+
+  /* ============ CUSTOM CURSOR (pointer:fine only) ============ */
+  .cursor-dot, .cursor-ring{
+    position:fixed; top:0; left:0; pointer-events:none; z-index:9999;
+    border-radius:50%; transform:translate(-50%,-50%);
+    will-change:transform;
+  }
+  .cursor-dot{ width:5px; height:5px; background:var(--gold-bright); opacity:0; }
+  .cursor-ring{
+    width:36px; height:36px; border:1px solid rgba(232,205,133,0.55);
+    opacity:0; transition:width .35s var(--ease), height .35s var(--ease), border-color .35s var(--ease), background .35s var(--ease);
+  }
+  .cursor-ring.is-active{ opacity:1; }
+  .cursor-dot.is-active{ opacity:1; }
+  .cursor-ring.is-hover{ width:64px; height:64px; background:rgba(232,205,133,0.06); border-color:var(--gold-bright); }
+  .cursor-ring .cursor-label{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-size:9.5px; letter-spacing:0.18em; text-transform:uppercase; color:var(--gold-bright);
+    opacity:0; transition:opacity .3s ease; white-space:nowrap;
+  }
+  .cursor-ring.is-hover .cursor-label{ opacity:1; }
+  @media (hover:none), (pointer:coarse){
+    .cursor-dot, .cursor-ring{ display:none; }
+  }
+</style>
+<noscript><style>
+  .preloader{ display:none; }
+  .hero-eyebrow, .neon-logo .char, .hero-divider, .hero-sub, .hero-nabeul, .hero-buttons, .scroll-cue{ opacity:1 !important; }
+  .about-slider-curtain{ transform:scaleX(0) !important; }
+  .about-quote{ opacity:1 !important; transform:none !important; }
+  .masonry-item.pre-reveal{ opacity:1 !important; transform:none !important; }
+</style></noscript>
+</head>
+<body>
+
+<!-- ============ PRELOADER ============ -->
+<div class="preloader" id="preloader" aria-hidden="true">
+  <div class="preloader-emblem"><img src="https://github.com/Randome700/pics-tre-leoni/blob/main/logo.png?raw=true" alt=""></div>
+  <div class="preloader-line" id="preloaderLine"></div>
+</div>
+
+<!-- ============ CUSTOM CURSOR ============ -->
+<div class="cursor-ring" id="cursorRing"><span class="cursor-label" id="cursorLabel"></span></div>
+<div class="cursor-dot" id="cursorDot"></div>
+
+<!-- ============ NAVBAR ============ -->
+<nav class="navbar" id="navbar">
+  <div class="nav-logo">
+    <div class="nav-emblem"><img src="https://github.com/Randome700/pics-tre-leoni/blob/main/logo.png?raw=true" alt="Tre Leoni Nabeul"></div>
+    <div class="nav-wordmark"><span class="tre">Tre</span> <span class="leo">Leo<span class="ni">ni</span></span><small>Ristorante Italiano</small></div>
+  </div>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#accueil">Accueil</a></li>
+    <li><a href="#apropos">À propos</a></li>
+    <li><a href="#menu">Menu</a></li>
+    <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#localisation">Nous trouver</a></li>
+  </ul>
+  <button class="nav-burger" id="burger" aria-label="Ouvrir le menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ============ HERO ============ -->
+<header class="hero" id="accueil">
+  <div class="hero-bg-wrap" id="heroBgWrap">
+    <div class="hero-bg-layer blur-up active" data-src="https://github.com/Randome700/pics-tre-leoni/blob/main/pic9.jpeg?raw=true"></div>
+    <div class="hero-bg-layer" data-src="https://github.com/Randome700/pics-tre-leoni/blob/main/pic11.jpeg?raw=true"></div>
+    <div class="hero-bg-layer" data-src="https://github.com/Randome700/pics-tre-leoni/blob/main/pic14.jpeg?raw=true"></div>
+    <div class="hero-bg-layer" data-src="https://github.com/Randome700/pics-tre-leoni/blob/main/pic15.jpeg?raw=true"></div>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content" id="heroContent">
+    <div class="hero-eyebrow" id="heroEyebrow">Ristorante Italiano di Lusso</div>
+    <h1 class="neon-logo" id="heroLogo"><span class="tre">Tre</span> <span class="leo">Leo</span><span class="ni">ni</span></h1>
+    <div class="hero-divider" id="heroDivider">
+      <svg viewBox="0 0 220 24" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="12" x2="88" y2="12" stroke="var(--gold)" stroke-width="1"/>
+        <path d="M110 3 L119 12 L110 21 L101 12 Z" fill="none" stroke="var(--gold-bright)" stroke-width="1.2"/>
+        <line x1="132" y1="12" x2="220" y2="12" stroke="var(--gold)" stroke-width="1"/>
+      </svg>
+    </div>
+    <p class="hero-sub" id="heroSub">Cuisine italienne authentique au cœur de Nabeul</p>
+    <p class="hero-nabeul" id="heroNabeul">Nabeul · Tunisie</p>
+    <div class="hero-buttons" id="heroButtons">
+      <a href="#menu" class="btn btn-solid magnetic">Voir le menu</a>
+    </div>
+  </div>
+  <div class="scroll-cue"><div class="line"></div><span>Découvrir</span></div>
+</header>
+
+<!-- ============ ABOUT ============ -->
+<section class="about" id="apropos">
+  <div class="container about-grid">
+    <div class="about-text reveal">
+      <span class="eyebrow">Notre histoire</span>
+      <h2>À propos de<br>Tre Leoni</h2>
+      <p>Née de la passion pour la véritable cuisine italienne, Tre Leoni Nabeul incarne l'élégance et le savoir-faire de la tradition transalpine, réinterprétés avec exigence sur les rives de la Méditerranée tunisienne.</p>
+      <p>Chaque plat naît d'ingrédients frais et sélectionnés avec soin — poissons de la journée, herbes fraîches, huiles d'olive de première pression — pour offrir une expérience culinaire d'exception, fidèle à l'âme de l'Italie.</p>
+      <p>Dans un cadre raffiné où le bois sombre rencontre les lueurs dorées, Tre Leoni vous invite à vivre Nabeul autrement : entre convivialité italienne et art de la table.</p>
+      <div class="about-stats">
+        <div><b>100%</b><span>Fait maison</span></div>
+        <div><b>90+</b><span>Créations italiennes</span></div>
+        <div><b>N°1</b><span>Trattoria à Nabeul</span></div>
+      </div>
+    </div>
+    <div class="about-slider reveal">
+      <img class="active" src="https://github.com/Randome700/pics-tre-leoni/blob/main/pic1.jpeg?raw=true" alt="Plat signature Tre Leoni">
+      <img src="https://github.com/Randome700/pics-tre-leoni/blob/main/pic10.jpeg?raw=true" alt="Intérieur du restaurant Tre Leoni">
+      <img src="https://github.com/Randome700/pics-tre-leoni/blob/main/pic13.jpeg?raw=true" alt="Préparation en cuisine">
+      <div class="about-slider-curtain" id="aboutCurtain"></div>
+      <div class="about-quote-scrim"></div>
+      <div class="about-quote" id="aboutQuote">
+        <p>« La véritable cuisine italienne ne s'improvise pas — elle se transmet, geste après geste. »</p>
+        <span>L'esprit Tre Leoni</span>
+      </div>
+      <div class="slider-dots" id="sliderDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ MENU ============ -->
+<section class="menu" id="menu">
+  <div class="container">
+    <div class="section-head reveal">
+      <span class="eyebrow">La Carta</span>
+      <h2>Notre Menu</h2>
+      <p>Une carte pensée comme un voyage à travers l'Italie — de la Ligurie aux Pouilles, en passant par l'Émilie-Romagne.</p>
+    </div>
+
+    <div class="menu-tabs" id="menuTabs"></div>
+    <div id="menuPanels"></div>
+  </div>
+</section>
+
+<!-- ============ GALLERY ============ -->
+<section class="gallery" id="galerie">
+  <div class="section-head reveal">
+    <span class="eyebrow">L'expérience</span>
+    <h2>Galerie</h2>
+    <p>Un aperçu de notre univers — entre assiettes soignées, ambiance feutrée et gestes de chef.</p>
+  </div>
+  <div class="masonry" id="masonry"></div>
+</section>
+
+<!-- ============ LOCATION ============ -->
+<section class="location" id="localisation">
+  <div class="section-head reveal">
+    <span class="eyebrow">Adresse</span>
+    <h2>Nous trouver</h2>
+  </div>
+  <div class="loc-grid reveal">
+    <div class="loc-info">
+      <h3>Tre Leoni Nabeul</h3>
+      <div class="loc-line">
+        <span class="ic">&#9679;</span>
+        <div><span>Adresse</span><p>Restaurant Tre Leoni, Nabeul, Tunisie</p></div>
+      </div>
+      <div class="loc-line">
+        <span class="ic">&#9679;</span>
+        <div><span>Téléphone</span><p>52 275 660</p></div>
+      </div>
+      <div class="loc-line">
+        <span class="ic">&#9679;</span>
+        <div><span>Horaires</span><p>Tous les jours · 12h00 – 15h00 &amp; 19h00 – 23h30</p></div>
+      </div>
+      <a class="btn btn-solid magnetic" href="https://www.google.com/maps/place/Restaurant+tre+leoni+Nabeul/@36.4038182,10.6394710,17z/data=!3m1!4b1!4m5!3m4!1s0x13029f607faa1051:0x3e1e33698bb181e!8m2!3d36.4038182!4d10.6394710" target="_blank" rel="noopener">Ouvrir dans Google Maps</a>
+    </div>
+    <div class="map-frame">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1605.6111157433902!2d10.639471000334359!3d36.403818212630185!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x13029f607faa1051%3A0x3e1e33698bb181e!2sRestaurant%20tre%20leoni%20Nabeul!5e0!3m2!1sen!2stn!4v1783023445421!5m2!1sen!2stn" allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="container">
+    <div class="footer-grid reveal">
+      <div class="footer-brand">
+        <img src="https://github.com/Randome700/pics-tre-leoni/blob/main/logo.png?raw=true" alt="Tre Leoni Nabeul">
+        <p>Cuisine italienne authentique au cœur de Nabeul. Une trattoria de prestige où tradition et élégance se rencontrent.</p>
+        <div class="socials">
+          <a href="#" aria-label="Instagram">IG</a>
+          <a href="#" aria-label="Facebook">FB</a>
+          <a href="tel:+21652275660" aria-label="Téléphone">TEL</a>
+        </div>
+      </div>
+      <div>
+        <h5>Navigation</h5>
+        <ul>
+          <li><a href="#accueil">Accueil</a></li>
+          <li><a href="#apropos">À propos</a></li>
+          <li><a href="#menu">Menu</a></li>
+          <li><a href="#galerie">Galerie</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>Horaires</h5>
+        <ul>
+          <li>Lun – Dim</li>
+          <li>12h00 – 15h00</li>
+          <li>19h00 – 23h30</li>
+        </ul>
+      </div>
+      <div>
+        <h5>Contact</h5>
+        <ul>
+          <li>Nabeul, Tunisie</li>
+          <li><a href="tel:+21652275660">52 275 660</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© <span id="year"></span> Tre Leoni Nabeul. Tous droits réservés.</span>
+      <span>Ristorante Italiano di Lusso — Nabeul</span>
+    </div>
+  </div>
+</footer>
+
+<!-- ============ LIGHTBOX ============ -->
+<div class="lightbox" id="lightbox" aria-hidden="true">
+  <button class="lightbox-btn lightbox-close" id="lightboxClose" aria-label="Fermer">&times;</button>
+  <button class="lightbox-btn lightbox-prev" id="lightboxPrev" aria-label="Image précédente">&#8249;</button>
+  <img class="lightbox-img" id="lightboxImg" src="" alt="">
+  <button class="lightbox-btn lightbox-next" id="lightboxNext" aria-label="Image suivante">&#8250;</button>
+  <div class="lightbox-counter" id="lightboxCounter"></div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+document.getElementById('year').textContent = new Date().getFullYear();
+
+/* ---------- Motion preference & capability flags ---------- */
+const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+const hasFinePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+const gsapReady = typeof gsap !== 'undefined';
+if(gsapReady){ gsap.registerPlugin(ScrollTrigger); }
+
+/* ---------- Preloader ----------
+   Why: the hero previously animated in immediately on parse, which meant
+   on a slow connection the entrance would fire before the background photo
+   or display font had actually arrived — the opposite of "cinematic".
+   We hold a quiet veil for a beat, then hand off cleanly to the hero timeline. */
+const preloader = document.getElementById('preloader');
+const preloaderLine = document.getElementById('preloaderLine');
+
+function runHeroEntrance(){
+  const logo = document.getElementById('heroLogo');
+
+  // Split the wordmark into individual character spans (kept inside their
+  // existing colour spans so the green/white/red identity is untouched).
+  logo.querySelectorAll('span').forEach(colorSpan => {
+    const text = colorSpan.textContent;
+    colorSpan.textContent = '';
+    text.split('').forEach(ch => {
+      const s = document.createElement('span');
+      s.className = 'char';
+      s.textContent = ch === ' ' ? '\u00A0' : ch;
+      colorSpan.appendChild(s);
+    });
+  });
+
+  if(!gsapReady || prefersReducedMotion){
+    // Fallback: reveal everything immediately, no motion.
+    [logo, '#heroEyebrow', '#heroDivider', '#heroSub', '#heroNabeul', '#heroButtons', '.scroll-cue'].forEach(sel=>{
+      const el = typeof sel === 'string' ? document.querySelector(sel) : sel;
+      if(el) el.style.opacity = 1;
+    });
+    document.querySelectorAll('.neon-logo .char').forEach(c => c.style.opacity = 1);
+    logo.classList.add('flicker-on');
+    return;
+  }
+
+  // Starting transforms for the plain .to() tweens below (captured before the timeline runs).
+  gsap.set(['#heroEyebrow', '#heroSub', '#heroButtons'], { y:16 });
+
+  const tl = gsap.timeline({ defaults:{ ease:'power3.out' } });
+  tl.to('#heroEyebrow', { opacity:1, y:0, duration:0.9 }, 0.1)
+    .fromTo('.neon-logo .char',
+      { opacity:0, y:26, filter:'blur(6px)' },
+      { opacity:1, y:0, filter:'blur(0px)', duration:0.9, stagger:0.045 }, 0.35)
+    .to('#heroDivider', { opacity:1, duration:0.8 }, '-=0.5')
+    .to('#heroSub', { opacity:1, y:0, duration:0.8 }, '-=0.55')
+    .to('#heroNabeul', { opacity:1, duration:0.7 }, '-=0.55')
+    .to('#heroButtons', { opacity:1, y:0, duration:0.8 }, '-=0.5')
+    .to('.scroll-cue', { opacity:1, duration:0.8 }, '-=0.4')
+    .add(()=> logo.classList.add('flicker-on'));
+}
+
+window.addEventListener('load', () => {
+  if(!gsapReady || prefersReducedMotion){
+    preloader.style.display = 'none';
+    runHeroEntrance();
+    return;
+  }
+  const tl = gsap.timeline({
+    onComplete: () => {
+      preloader.classList.add('done');
+      runHeroEntrance();
+    }
+  });
+  tl.to('.preloader-emblem', { opacity:1, duration:0.6, ease:'power2.out' })
+    .to(preloaderLine, { height:40, duration:0.5, ease:'power2.out' }, '-=0.15')
+    .to(preloaderLine, { height:0, duration:0.35, ease:'power2.in' }, '+=0.15')
+    .to('.preloader-emblem', { opacity:0, duration:0.35 }, '-=0.35')
+    .to(preloader, { opacity:0, duration:0.6, ease:'power2.inOut' }, '-=0.2');
+});
+
+/* Safety net: if 'load' is slow to fire (e.g. remote images), cap the wait. */
+setTimeout(() => {
+  if(!preloader.classList.contains('done') && preloader.style.opacity !== '0'){
+    window.dispatchEvent(new Event('load'));
+  }
+}, 3500);
+
+/* ---------- Hero photo rotation ----------
+   Four frames instead of one static photo. The first frame is the LCP
+   element, so it gets a genuine blur-up: we preload it and only sharpen
+   once it has actually decoded, rather than faking the effect. */
+const heroLayers = Array.from(document.querySelectorAll('.hero-bg-layer'));
+heroLayers.forEach((layer, i) => {
+  const src = layer.dataset.src;
+  const img = new Image();
+  img.onload = () => {
+    layer.style.backgroundImage = `url('${src}')`;
+    if(i === 0) layer.classList.add('loaded');
+  };
+  img.src = src;
+});
+
+let heroIndex = 0;
+if(heroLayers.length > 1 && !prefersReducedMotion){
+  setInterval(() => {
+    const next = (heroIndex + 1) % heroLayers.length;
+    heroLayers[heroIndex].classList.remove('active');
+    heroLayers[next].classList.add('active');
+    heroIndex = next;
+  }, 7000);
+}
+
+/* ---------- Subtle hero parallax on scroll ---------- */
+if(gsapReady && !prefersReducedMotion){
+  gsap.to('.hero-bg-wrap', {
+    yPercent: 14,
+    ease:'none',
+    scrollTrigger:{ trigger:'.hero', start:'top top', end:'bottom top', scrub:0.6 }
+  });
+}
+
+/* ---------- Custom cursor (desktop only) ---------- */
+if(hasFinePointer && !prefersReducedMotion){
+  const ring = document.getElementById('cursorRing');
+  const dot = document.getElementById('cursorDot');
+  const label = document.getElementById('cursorLabel');
+  let rx=0, ry=0, dx=0, dy=0;
+  window.addEventListener('mousemove', e=>{
+    dx = e.clientX; dy = e.clientY;
+    ring.classList.add('is-active'); dot.classList.add('is-active');
+  });
+  (function tick(){
+    rx += (dx-rx)*0.16; ry += (dy-ry)*0.16;
+    ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+    dot.style.transform = `translate(${dx}px,${dy}px) translate(-50%,-50%)`;
+    requestAnimationFrame(tick);
+  })();
+  document.querySelectorAll('a, button, .masonry-item, .pizza-card, .dish-card').forEach(el=>{
+    el.addEventListener('mouseenter', ()=>{
+      ring.classList.add('is-hover');
+      label.textContent = el.classList.contains('masonry-item') ? 'Voir' : '';
+    });
+    el.addEventListener('mouseleave', ()=>{ ring.classList.remove('is-hover'); label.textContent=''; });
+  });
+}
+
+/* ---------- Magnetic buttons ---------- */
+if(hasFinePointer && !prefersReducedMotion && gsapReady){
+  document.querySelectorAll('.magnetic').forEach(btn=>{
+    btn.addEventListener('mousemove', e=>{
+      const r = btn.getBoundingClientRect();
+      const relX = e.clientX - r.left - r.width/2;
+      const relY = e.clientY - r.top - r.height/2;
+      gsap.to(btn, { x:relX*0.28, y:relY*0.45, duration:0.5, ease:'power2.out' });
+    });
+    btn.addEventListener('mouseleave', ()=>{
+      gsap.to(btn, { x:0, y:0, duration:0.6, ease:'elastic.out(1, 0.5)' });
+    });
+  });
+}
+
+/* ---------- Navbar scroll state ---------- */
+const navbar = document.getElementById('navbar');
+window.addEventListener('scroll', () => {
+  navbar.classList.toggle('scrolled', window.scrollY > 40);
+});
+
+/* ---------- Navbar scrollspy: highlight the section in view ---------- */
+const navAnchors = document.querySelectorAll('#navLinks a');
+const spySections = Array.from(navAnchors).map(a => document.querySelector(a.getAttribute('href'))).filter(Boolean);
+const spyObserver = new IntersectionObserver((entries)=>{
+  entries.forEach(entry=>{
+    if(entry.isIntersecting){
+      const id = entry.target.id;
+      navAnchors.forEach(a=>{
+        a.style.color = a.getAttribute('href') === '#'+id ? 'var(--gold-bright)' : '';
+      });
+    }
+  });
+}, { rootMargin:'-45% 0px -45% 0px' });
+spySections.forEach(s => spyObserver.observe(s));
+
+/* ---------- Mobile burger ---------- */
+const burger = document.getElementById('burger');
+burger.addEventListener('click', () => {
+  navbar.classList.toggle('menu-open');
+});
+document.querySelectorAll('#navLinks a').forEach(a=>{
+  a.addEventListener('click', ()=> navbar.classList.remove('menu-open'));
+});
+
+/* ---------- Scroll reveal ---------- */
+const revealEls = document.querySelectorAll('.reveal, .reveal-stagger');
+const io = new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+  });
+}, {threshold:0.15});
+revealEls.forEach(el=>io.observe(el));
+
+/* ---------- About slider ---------- */
+const sliderImgs = document.querySelectorAll('.about-slider img');
+const dotsWrap = document.getElementById('sliderDots');
+sliderImgs.forEach((_, i)=>{
+  const b = document.createElement('button');
+  if(i===0) b.classList.add('active');
+  b.addEventListener('click', ()=> showSlide(i));
+  dotsWrap.appendChild(b);
+});
+let sliderIndex = 0;
+function showSlide(i){
+  sliderImgs.forEach(img=>img.classList.remove('active'));
+  dotsWrap.querySelectorAll('button').forEach(d=>d.classList.remove('active'));
+  sliderImgs[i].classList.add('active');
+  dotsWrap.children[i].classList.add('active');
+  sliderIndex = i;
+}
+setInterval(()=>{ showSlide((sliderIndex+1) % sliderImgs.length); }, 4500);
+
+/* ---------- About: curtain-wipe reveal + text stagger ---------- */
+if(gsapReady){
+  if(!prefersReducedMotion){
+    gsap.to('#aboutCurtain', {
+      scaleX:0, duration:1.1, ease:'power4.inOut',
+      scrollTrigger:{ trigger:'.about-slider', start:'top 78%', toggleActions:'play none none none' }
+    });
+    gsap.to('#aboutQuote', {
+      opacity:1, y:0, duration:0.9, ease:'power2.out', delay:0.5,
+      scrollTrigger:{ trigger:'.about-slider', start:'top 78%', toggleActions:'play none none none' }
+    });
+    gsap.from('.about-text p', {
+      opacity:0, y:18, duration:0.8, stagger:0.12, ease:'power2.out',
+      scrollTrigger:{ trigger:'.about-text', start:'top 75%', toggleActions:'play none none none' }
+    });
+    gsap.from('.about-stats > div', {
+      opacity:0, y:14, duration:0.7, stagger:0.1, ease:'power2.out',
+      scrollTrigger:{ trigger:'.about-stats', start:'top 88%', toggleActions:'play none none none' }
+    });
+  } else {
+    document.getElementById('aboutCurtain').style.transform = 'scaleX(0)';
+    document.getElementById('aboutQuote').style.opacity = '1';
+    document.getElementById('aboutQuote').style.transform = 'none';
+  }
+}
+
+/* ---------- Menu data ---------- */
+const menuData = {
+  "Entrées": {
+    note: "",
+    items: [
+      ["Sardines Marinés","Ail, persil, citron, huile d'olive","38"],
+      ["Cocktail de crevettes","Sauce cocktail maison, avocat","37"],
+      ["Tartare di branzino","Bar frais, agrumes, huile vierge","39"],
+      ["Carpaccio di orata / branzino","Tranches fines, câpres, citron","44"],
+      ["Carpaccio di filetto","Bœuf, copeaux de parmesan, roquette","49"],
+      ["Vitello Tonnato","Veau rosé, sauce thon-câpres","36"],
+      ["Tartare di filetto","Bœuf coupé au couteau, condiments","48"],
+      ["Pepata di cozze","Moules, piment, vin blanc, persil","43"],
+      ["Gamberi saltati","Crevettes sautées à l'ail et au piment","40"],
+      ["Gnocco fritto e prosciutto","Beignet frit, jambon de Parme","41"],
+      ["Involtini bresaola mozzarella","Roulés de bœuf séché, roquette","43"],
+      ["Gamberi gratinati all'arancia","Crevettes gratinées à l'orange","39"],
+      ["Parmigiana di melanzana","Aubergines, tomate, mozzarella","35"],
+    ]
+  },
+  "Salades": {
+    note:"",
+    items:[
+      ["Classica","Verdures fraîches, vinaigrette maison","20"],
+      ["Insalata rucola gamberi","Roquette, crevettes, parmesan","38"],
+      ["Insalata ai frutti di mare","Fruits de mer, agrumes, herbes","38"],
+      ["Insalata cesar","Poulet grillé, parmesan, croûtons","30"],
+      ["Burrata insalata","Burrata crémeuse, tomates confites","38"],
+      ["Insalata di salmone","Saumon mariné, avocat, roquette","40"],
+    ]
+  },
+  "Premiers Plats": {
+    note:"Pâtes & risottos",
+    items:[
+      ["Linguine alle vongole","Palourdes, ail, persil, vin blanc","48"],
+      ["Spaghetti nero di seppie","Encre de seiche, calamars","45"],
+      ["Spaghetti pesto e gamberetti","Pesto basilic, crevettes","44"],
+      ["Lasagne alla bolognese","Ragù traditionnel, béchamel","48"],
+      ["Risotto gamberetti e salmone","Crevettes, saumon, parmesan","52"],
+      ["Risotto ai frutti di mare","Fruits de mer, safran","52"],
+      ["Risotto gamberetti e parmigiano","Crevettes, parmesan affiné","52"],
+      ["Risotto ai finferli","Girolles, beurre, parmesan","50"],
+      ["Risotto ai porcini","Cèpes, vin blanc, parmesan","50"],
+    ]
+  },
+  "Pâtes Fraîches Maison": {
+    note:"Préparées chaque jour dans notre laboratoire",
+    items:[
+      ["Capello del prete ricotta spinaci","Ricotta, épinards, beurre de sauge","42"],
+      ["Ravioli branzino e gamberetti","Bar, crevettes, bisque légère","54"],
+      ["Ravioli carne mascarpone","Viande, mascarpone, jus de rôti","48"],
+      ["Chitarra ai frutti di mare","Pâtes carrées, fruits de mer","54"],
+      ["Gnocchi al ragù","Pommes de terre, ragù traditionnel","43"],
+      ["Gnocchi burro e salvia","Beurre noisette, sauge fraîche","39"],
+      ["Ravioli crema truffe","Crème de truffe noire","50","chef"],
+      ["Fusilli panna e salmone","Crème, saumon fumé","42"],
+      ["Maccheroni amatriciana","Guanciale, tomate, pecorino","42"],
+      ["Bigoli al ragù pistacchio","Ragù de bœuf, pistache de Sicile","42"],
+      ["Tagliatelle bolognese","Ragù mijoté longuement","43"],
+    ]
+  },
+  "Plats Poissons": {
+    note:"",
+    items:[
+      ["Branzino in bisque","Bar entier, bisque de crustacés","53"],
+      ["Cannelloni di branzino","Farcis au bar, sauce légère","53"],
+      ["Misto di pesce alla griglia","Sélection de poissons grillés","69"],
+      ["Tempura di mare","Fruits de mer en tempura croustillante","47"],
+      ["Seppie alla griglia","Seiches grillées, huile d'olive","48"],
+      ["Calamari alla piastra","Calamars snackés à la plancha","49"],
+      ["Zuppa di pesce","Soupe de poisson traditionnelle","48"],
+      ["Misto pesce gratinato","Poissons gratinés au four","69"],
+      ["Sinfonia di mare (2 pers.)","Plateau de fruits de mer à partager","160","chef"],
+    ]
+  },
+  "Plats Viande": {
+    note:"",
+    items:[
+      ["Filetto Rossini","Filet de bœuf, foie gras, sauce Périgueux","76","chef"],
+      ["Voronof flambé","Filet flambé, sauce crémée au poivre","70"],
+      ["Wellington","Filet en croûte feuilletée, duxelles","76"],
+      ["Filetto grigliato","Filet de bœuf grillé nature","68"],
+      ["Tagliata parmesan","Bœuf tranché, roquette, parmesan","60"],
+      ["Poulet pané","Escalope panée, citron","38"],
+      ["Hamburger filetto","Bœuf premium, pain brioché","48"],
+      ["Filetto 3 sauces","Filet de bœuf, trio de sauces","70"],
+      ["Poulet crème","Suprême de poulet, sauce crème","38"],
+      ["Canard confit","Cuisse confite, jus réduit","80"],
+      ["Chateaubriand","Pièce noble pour deux, sauce béarnaise","180","chef"],
+    ]
+  },
+  "Pizzas": {
+    note:"Pâte fine, cuisson au four traditionnel",
+    pizza:true,
+    items:[
+      ["Margherita","Tomate, mozzarella, basilic","24"],
+      ["Napoli","Tomate, mozzarella, anchois, câpres","27"],
+      ["Tonno","Tomate, mozzarella, thon, oignons rouges","29"],
+      ["Funghi","Tomate, mozzarella, champignons frais","28"],
+      ["Quattro Formaggi","Mozzarella, gorgonzola, fontina, parmesan","32"],
+      ["Regina","Tomate, mozzarella, jambon, champignons","30"],
+      ["Vegetariana","Légumes grillés de saison","28"],
+      ["Frutti di Mare","Fruits de mer, ail, persil","36"],
+    ]
+  },
+  "Pizzas au Porc": {
+    note:"Sélection avec charcuterie italienne",
+    pizza:true,
+    items:[
+      ["Diavola","Tomate, mozzarella, salami piquant","30"],
+      ["Capricciosa","Jambon, champignons, artichauts, olives","32"],
+      ["Prosciutto e Funghi","Jambon de Parme, champignons","33"],
+      ["Quattro Stagioni","Quatre garnitures, quatre saisons","34"],
+      ["Salame Piccante","Salami épicé, piment frais","31"],
+    ]
+  },
+  "Desserts": {
+    note:"",
+    items:[
+      ["Tiramisu","Mascarpone, café, cacao","19"],
+      ["Panna Cotta","Crème cuite, coulis de fruits rouges","18"],
+      ["Cuore caldo","Cœur coulant au chocolat chaud","18"],
+      ["Pizza nutellosa","Pâte fine, nutella, noisettes","18"],
+      ["Glaces variées","Sélection de parfums du jour","12"],
+    ]
+  }
+};
+
+const tabsWrap = document.getElementById('menuTabs');
+const panelsWrap = document.getElementById('menuPanels');
+let first = true;
+Object.entries(menuData).forEach(([cat, data])=>{
+  const slug = cat.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9]+/g,'-');
+
+  const tabBtn = document.createElement('button');
+  tabBtn.className = 'menu-tab' + (first ? ' active' : '');
+  tabBtn.textContent = cat;
+  tabBtn.dataset.target = slug;
+  tabBtn.addEventListener('click', ()=>{
+    if(tabBtn.classList.contains('active')) return;
+    const nextPanel = document.getElementById('panel-'+slug);
+    const currentPanel = document.querySelector('.menu-panel.active');
+    document.querySelectorAll('.menu-tab').forEach(t=>t.classList.remove('active'));
+    tabBtn.classList.add('active');
+
+    const revealNextPanel = () => {
+      if(currentPanel){
+        currentPanel.classList.remove('active');
+        if(gsapReady) gsap.set(currentPanel, { clearProps:'opacity,transform' });
+      }
+      nextPanel.classList.add('active');
+      const cards = nextPanel.querySelectorAll('.dish-card, .pizza-card');
+      if(gsapReady && !prefersReducedMotion){
+        gsap.fromTo(cards, { opacity:0, y:16 }, { opacity:1, y:0, duration:0.55, stagger:0.035, ease:'power2.out' });
+      }
+    };
+
+    if(gsapReady && !prefersReducedMotion && currentPanel){
+      gsap.to(currentPanel, { opacity:0, y:-8, duration:0.25, ease:'power1.in', onComplete: revealNextPanel });
+    } else {
+      revealNextPanel();
+    }
+  });
+  tabsWrap.appendChild(tabBtn);
+
+  const panel = document.createElement('div');
+  panel.className = 'menu-panel' + (first ? ' active' : '');
+  panel.id = 'panel-'+slug;
+
+  let inner = '';
+  if(data.note){ inner += `<p class="menu-note">${data.note}</p>`; }
+
+  if(data.pizza){
+    inner += '<div class="pizza-grid">';
+    data.items.forEach(([name, ing, price, flag])=>{
+      const badge = flag === 'chef' ? '<span class="dish-badge">Suggestion du Chef</span>' : '';
+      inner += `<div class="pizza-card">
+        ${badge}
+        <h4>${name}</h4>
+        <p>${ing}</p>
+        <div class="dish-price">${price} TND</div>
+      </div>`;
+    });
+    inner += '</div>';
+  } else {
+    inner += '<div class="dish-grid">';
+    data.items.forEach(([name, ing, price, flag])=>{
+      const badge = flag === 'chef' ? '<span class="dish-badge">Suggestion du Chef</span>' : '';
+      inner += `<div class="dish-card">
+        <div class="dish-info"><h4>${name}${badge}</h4><p>${ing}</p></div>
+        <div class="dish-price">${price} TND</div>
+      </div>`;
+    });
+    inner += '</div>';
+  }
+  panel.innerHTML = inner;
+  panelsWrap.appendChild(panel);
+  first = false;
+});
+
+/* First panel's cards rise in gently the first time the menu scrolls into view. */
+if(gsapReady){
+  const firstCards = document.querySelectorAll('.menu-panel.active .dish-card, .menu-panel.active .pizza-card');
+  if(!prefersReducedMotion){
+    gsap.from(firstCards, {
+      opacity:0, y:18, duration:0.7, stagger:0.04, ease:'power2.out',
+      scrollTrigger:{ trigger:'#menuTabs', start:'top 85%', toggleActions:'play none none none' }
+    });
+  }
+}
+
+/* ---------- Gallery masonry ---------- */
+const galleryImgs = [
+  "pic1.jpeg","pic9.jpeg","pic10.jpeg","pic11.jpeg","pic13.jpeg","pic14.jpeg","pic15.jpeg"
+];
+const galleryUrls = galleryImgs.map(name => `https://github.com/Randome700/pics-tre-leoni/blob/main/${name}?raw=true`);
+const masonry = document.getElementById('masonry');
+galleryImgs.forEach((name, i)=>{
+  const item = document.createElement('div');
+  item.className = 'masonry-item';
+  item.setAttribute('role','button');
+  item.setAttribute('tabindex','0');
+  item.setAttribute('aria-label','Agrandir la photo ' + (i+1));
+  item.innerHTML = `<img src="${galleryUrls[i]}" alt="Tre Leoni Nabeul — ${name.replace('.jpeg','')}" loading="lazy" decoding="async">`;
+  if(!prefersReducedMotion) item.classList.add('pre-reveal');
+  item.addEventListener('click', () => openLightbox(i));
+  item.addEventListener('keydown', e => { if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); openLightbox(i); } });
+  masonry.appendChild(item);
+});
+
+/* ---------- Gallery: staggered scroll reveal ---------- */
+if(gsapReady && !prefersReducedMotion){
+  gsap.to('.masonry-item', {
+    opacity:1, y:0, duration:0.8, ease:'power2.out', stagger:{ each:0.07, from:'start', grid:'auto' },
+    scrollTrigger:{ trigger:'.masonry', start:'top 85%', toggleActions:'play none none none' }
+  });
+}
+
+/* ---------- Lightbox ---------- */
+const lightbox = document.getElementById('lightbox');
+const lightboxImg = document.getElementById('lightboxImg');
+const lightboxCounter = document.getElementById('lightboxCounter');
+let lightboxIndex = 0;
+
+function renderLightbox(){
+  lightboxImg.classList.remove('show');
+  const swap = () => {
+    lightboxImg.src = galleryUrls[lightboxIndex];
+    lightboxCounter.textContent = String(lightboxIndex+1).padStart(2,'0') + ' / ' + String(galleryUrls.length).padStart(2,'0');
+    requestAnimationFrame(()=> lightboxImg.classList.add('show'));
+  };
+  prefersReducedMotion ? swap() : setTimeout(swap, 150);
+}
+function openLightbox(i){
+  lightboxIndex = i;
+  renderLightbox();
+  lightbox.classList.add('open');
+  lightbox.setAttribute('aria-hidden','false');
+  document.body.style.overflow = 'hidden';
+}
+function closeLightbox(){
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden','true');
+  document.body.style.overflow = '';
+}
+function stepLightbox(dir){
+  lightboxIndex = (lightboxIndex + dir + galleryUrls.length) % galleryUrls.length;
+  renderLightbox();
+}
+document.getElementById('lightboxClose').addEventListener('click', closeLightbox);
+document.getElementById('lightboxPrev').addEventListener('click', ()=> stepLightbox(-1));
+document.getElementById('lightboxNext').addEventListener('click', ()=> stepLightbox(1));
+lightbox.addEventListener('click', e => { if(e.target === lightbox) closeLightbox(); });
+document.addEventListener('keydown', e => {
+  if(!lightbox.classList.contains('open')) return;
+  if(e.key === 'Escape') closeLightbox();
+  if(e.key === 'ArrowLeft') stepLightbox(-1);
+  if(e.key === 'ArrowRight') stepLightbox(1);
+});
+</script>
+</body>
+</html>
