@@ -441,6 +441,205 @@
     .lightbox-img{ max-width:92vw; }
   }
 
+  /* ============ RESERVATION ============ */
+  .reservation{ padding:150px 0 140px; background:var(--bg); position:relative; border-top:1px solid var(--line); }
+  .reservation::before{
+    content:'';
+    position:absolute; inset:0; pointer-events:none;
+    background: radial-gradient(ellipse 60% 40% at 15% 0%, rgba(201,162,74,0.06), transparent 60%);
+  }
+  .reservation-grid{
+    display:grid; grid-template-columns:0.85fr 1.15fr; gap:80px; align-items:start;
+    position:relative; z-index:1;
+  }
+  .reservation-text .eyebrow{ margin-bottom:20px; }
+  .reservation-text h2{
+    font-size:clamp(32px,4.4vw,50px); font-style:italic; color:var(--cream); margin-bottom:22px;
+  }
+  .reservation-text > p{ color:var(--cream-dim); line-height:1.9; font-size:15px; letter-spacing:0.01em; max-width:460px; margin-bottom:48px; }
+
+  .info-cards{ display:flex; flex-direction:column; gap:16px; }
+  .info-card{
+    display:flex; gap:18px; align-items:flex-start;
+    padding:22px 24px; border:1px solid var(--line); background:var(--surface);
+    border-radius:6px; transition:border-color .4s var(--ease), transform .4s var(--ease), background .4s var(--ease);
+  }
+  .info-card:hover{ border-color:var(--gold-deep); transform:translateY(-3px); background:var(--surface-2); }
+  .info-card .info-ic{
+    flex-shrink:0; width:42px; height:42px; border-radius:50%;
+    border:1px solid var(--gold-deep); display:flex; align-items:center; justify-content:center;
+    color:var(--gold-bright); font-size:16px;
+  }
+  .info-card h4{
+    font-size:11px; letter-spacing:0.16em; text-transform:uppercase; color:var(--gold-bright);
+    font-family:'Jost',sans-serif; font-weight:500; margin-bottom:6px;
+  }
+  .info-card p{ font-size:14px; color:var(--cream-dim); line-height:1.6; }
+
+  /* ---- Form card ---- */
+  .reservation-form-wrap{
+    border:1px solid var(--line);
+    background: linear-gradient(160deg, var(--surface) 0%, var(--surface-2) 100%);
+    border-radius:8px;
+    padding:48px 44px;
+    position:relative;
+    box-shadow: 0 30px 80px -30px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.03);
+    backdrop-filter: blur(6px);
+  }
+  .reservation-form-wrap::before{
+    content:''; position:absolute; inset:0; border-radius:8px; padding:1px;
+    background:linear-gradient(160deg, rgba(201,162,74,0.28), rgba(201,162,74,0) 40%);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    pointer-events:none;
+  }
+  .form-row{ display:grid; grid-template-columns:1fr 1fr; gap:22px; }
+  .form-group{ position:relative; margin-bottom:26px; }
+  .form-group.full{ grid-column:1/-1; }
+
+  .form-group label{
+    display:block; font-size:10.5px; letter-spacing:0.18em; text-transform:uppercase;
+    color:var(--cream-faint); margin-bottom:10px;
+  }
+  .form-group label .req{ color:var(--gold-bright); margin-left:2px; }
+
+  .field-shell{ position:relative; }
+  .form-group input[type="text"],
+  .form-group input[type="tel"],
+  .form-group input[type="date"],
+  .form-group input[type="time"],
+  .form-group input[type="number"],
+  .form-group select,
+  .form-group textarea{
+    width:100%;
+    background:rgba(11,7,4,0.5);
+    border:1px solid var(--line);
+    color:var(--cream);
+    font-family:'Jost', sans-serif;
+    font-size:14px;
+    font-weight:300;
+    padding:14px 16px;
+    border-radius:4px;
+    transition:border-color .35s var(--ease), box-shadow .35s var(--ease), background .35s var(--ease);
+    outline:none;
+  }
+  .form-group select{
+    appearance:none;
+    -webkit-appearance:none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 20 20' fill='none' stroke='%23c9a24a'%3E%3Cpath d='M5 8l5 5 5-5' stroke-width='1.4' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+    background-repeat:no-repeat;
+    background-position:right 14px center;
+    padding-right:38px;
+    cursor:pointer;
+  }
+  .form-group select option{ background:var(--surface); color:var(--cream); }
+  .form-group textarea{ resize:vertical; min-height:100px; line-height:1.6; }
+  .form-group input::placeholder, .form-group textarea::placeholder{ color:var(--cream-faint); }
+
+  .form-group input:hover, .form-group select:hover, .form-group textarea:hover{ border-color:rgba(201,162,74,0.4); }
+  .form-group input:focus, .form-group select:focus, .form-group textarea:focus{
+    border-color:var(--gold); background:rgba(11,7,4,0.75);
+    box-shadow:0 0 0 3px rgba(201,162,74,0.12);
+  }
+  .form-group input[type="date"]::-webkit-calendar-picker-indicator,
+  .form-group input[type="time"]::-webkit-calendar-picker-indicator{
+    filter: invert(74%) sepia(35%) saturate(430%) hue-rotate(2deg) brightness(97%);
+    cursor:pointer;
+    opacity:0.85;
+  }
+
+  .field-error{
+    display:block; font-size:11.5px; color:#d97a6b; margin-top:8px;
+    letter-spacing:0.01em; opacity:0; max-height:0; overflow:hidden;
+    transition:opacity .3s ease, max-height .3s ease, margin-top .3s ease;
+  }
+  .form-group.invalid input, .form-group.invalid select, .form-group.invalid textarea{
+    border-color:#a8443a; box-shadow:0 0 0 3px rgba(168,68,58,0.12);
+  }
+  .form-group.invalid .field-error{ opacity:1; max-height:40px; margin-top:8px; }
+
+  .radio-pill-group{ display:flex; flex-wrap:wrap; gap:10px; }
+  .radio-pill{ position:relative; }
+  .radio-pill input{ position:absolute; opacity:0; width:100%; height:100%; cursor:pointer; margin:0; inset:0; }
+  .radio-pill span{
+    display:inline-flex; align-items:center; justify-content:center;
+    padding:11px 20px; border:1px solid var(--line); border-radius:24px;
+    font-size:12px; letter-spacing:0.06em; color:var(--cream-dim);
+    transition:all .3s var(--ease); white-space:nowrap;
+  }
+  .radio-pill input:hover + span{ border-color:rgba(201,162,74,0.5); color:var(--cream); }
+  .radio-pill input:focus-visible + span{ outline:2px solid var(--gold-bright); outline-offset:2px; }
+  .radio-pill input:checked + span{
+    background:var(--gold); border-color:var(--gold); color:#181008; font-weight:500;
+  }
+
+  .consent-row{
+    display:flex; align-items:flex-start; gap:12px; margin:8px 0 32px;
+    padding:16px 18px; border:1px solid var(--line); border-radius:6px; background:rgba(11,7,4,0.35);
+  }
+  .consent-row input[type="checkbox"]{
+    appearance:none; -webkit-appearance:none;
+    width:19px; height:19px; min-width:19px; border-radius:4px;
+    border:1px solid rgba(244,236,221,0.4); background:transparent;
+    margin-top:2px; cursor:pointer; position:relative;
+    transition:all .3s var(--ease);
+  }
+  .consent-row input[type="checkbox"]:hover{ border-color:var(--gold); }
+  .consent-row input[type="checkbox"]:checked{ background:var(--gold); border-color:var(--gold); }
+  .consent-row input[type="checkbox"]:checked::after{
+    content:''; position:absolute; left:6px; top:2px; width:5px; height:10px;
+    border:solid #181008; border-width:0 2px 2px 0; transform:rotate(40deg);
+  }
+  .consent-row input[type="checkbox"]:focus-visible{ outline:2px solid var(--gold-bright); outline-offset:2px; }
+  .consent-row label{ font-size:13px; color:var(--cream-dim); line-height:1.6; cursor:pointer; }
+
+  .btn-reserve{
+    width:100%; position:relative; overflow:hidden;
+    padding:19px 30px; font-size:12px; letter-spacing:0.22em; text-transform:uppercase;
+    background:var(--gold); color:#181008; border:1px solid var(--gold); border-radius:4px;
+    transition:background .4s var(--ease), box-shadow .4s var(--ease), transform .4s var(--ease), opacity .4s ease;
+    display:flex; align-items:center; justify-content:center; gap:10px;
+  }
+  .btn-reserve:not(:disabled):hover{
+    background:var(--gold-bright); transform:translateY(-3px);
+    box-shadow:0 12px 34px -8px rgba(201,162,74,0.55), 0 0 0 1px var(--gold-bright);
+  }
+  .btn-reserve:disabled{ opacity:0.4; cursor:not-allowed; }
+  .btn-reserve .btn-spinner{
+    width:15px; height:15px; border-radius:50%;
+    border:2px solid rgba(24,16,8,0.25); border-top-color:#181008;
+    display:none; animation:spin 0.7s linear infinite;
+  }
+  .btn-reserve.loading .btn-spinner{ display:inline-block; }
+  .btn-reserve.loading .btn-label{ opacity:0.7; }
+  @keyframes spin{ to{ transform:rotate(360deg); } }
+
+  .btn-reserve .ripple{
+    position:absolute; border-radius:50%; background:rgba(255,255,255,0.55);
+    transform:scale(0); pointer-events:none; animation:rippleAnim .7s ease-out forwards;
+  }
+  @keyframes rippleAnim{ to{ transform:scale(3.2); opacity:0; } }
+
+  .form-status{
+    margin-top:18px; text-align:center; font-size:13px; letter-spacing:0.02em;
+    color:var(--gold-bright); opacity:0; max-height:0; overflow:hidden;
+    transition:opacity .4s ease, max-height .4s ease, margin-top .4s ease;
+  }
+  .form-status.show{ opacity:1; max-height:60px; margin-top:18px; }
+
+  @media (max-width:980px){
+    .reservation-grid{ grid-template-columns:1fr; gap:56px; }
+    .reservation-form-wrap{ padding:38px 26px; }
+    .form-row{ grid-template-columns:1fr; }
+  }
+  @media (max-width:600px){
+    .reservation{ padding:100px 0 100px; }
+    .reservation-text > p{ max-width:none; }
+    .radio-pill span{ padding:12px 18px; font-size:12.5px; }
+    .form-group input, .form-group select, .form-group textarea{ font-size:16px; padding:15px 16px; }
+    .consent-row{ padding:14px 16px; }
+  }
+
   /* ============ LOCATION ============ */
   .location{ padding:130px 0; background:var(--bg-alt); border-top:1px solid var(--line); }
   .loc-grid{
@@ -590,6 +789,7 @@
     <li><a href="#apropos">À propos</a></li>
     <li><a href="#menu">Menu</a></li>
     <li><a href="#galerie">Galerie</a></li>
+    <li><a href="#reservation">Réservation</a></li>
     <li><a href="#localisation">Nous trouver</a></li>
   </ul>
   <button class="nav-burger" id="burger" aria-label="Ouvrir le menu">
@@ -679,6 +879,137 @@
   <div class="masonry" id="masonry"></div>
 </section>
 
+<!-- ============ RESERVATION ============ -->
+<section class="reservation" id="reservation">
+  <div class="container reservation-grid">
+    <div class="reservation-text reveal">
+      <span class="eyebrow">Réservation</span>
+      <h2>Réservez votre table</h2>
+      <p>Vivez une expérience gastronomique d'exception dans un cadre élégant. Envoyez votre demande de réservation et notre équipe la confirmera rapidement par WhatsApp ou par téléphone.</p>
+
+      <div class="info-cards">
+        <div class="info-card">
+          <span class="info-ic" aria-hidden="true">&#9679;</span>
+          <div>
+            <h4>Horaires d'ouverture</h4>
+            <p>Lundi – Dimanche · 12h00 – 23h00</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <span class="info-ic" aria-hidden="true">&#9679;</span>
+          <div>
+            <h4>Téléphone</h4>
+            <p>(+216) 22 626 249</p>
+          </div>
+        </div>
+        <div class="info-card">
+          <span class="info-ic" aria-hidden="true">&#9679;</span>
+          <div>
+            <h4>Délai de réponse</h4>
+            <p>Généralement en quelques minutes pendant les heures d'ouverture.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="reservation-form-wrap reveal">
+      <form id="reservationForm" novalidate>
+        <div class="form-row">
+          <div class="form-group full">
+            <label for="resName">Nom complet<span class="req">*</span></label>
+            <div class="field-shell">
+              <input type="text" id="resName" name="resName" autocomplete="name" placeholder="Votre nom et prénom" required>
+            </div>
+            <span class="field-error" id="err-resName">Veuillez indiquer votre nom.</span>
+          </div>
+
+          <div class="form-group full">
+            <label for="resPhone">Numéro de téléphone<span class="req">*</span></label>
+            <div class="field-shell">
+              <input type="tel" id="resPhone" name="resPhone" autocomplete="tel" placeholder="Ex. 52 275 660 ou +216 52 275 660" required>
+            </div>
+            <span class="field-error" id="err-resPhone">Veuillez indiquer un numéro de téléphone tunisien valide (8 chiffres).</span>
+          </div>
+
+          <div class="form-group">
+            <label for="resDate">Date de réservation<span class="req">*</span></label>
+            <div class="field-shell">
+              <input type="date" id="resDate" name="resDate" required>
+            </div>
+            <span class="field-error" id="err-resDate">Veuillez choisir une date valide (aujourd'hui ou plus tard).</span>
+          </div>
+
+          <div class="form-group">
+            <label for="resTime">Heure de réservation<span class="req">*</span></label>
+            <div class="field-shell">
+              <input type="time" id="resTime" name="resTime" min="12:00" max="23:00" step="900" required>
+            </div>
+            <span class="field-error" id="err-resTime">Veuillez choisir une heure entre 12h00 et 23h00.</span>
+          </div>
+
+          <div class="form-group full">
+            <label for="resGuests">Nombre de personnes<span class="req">*</span></label>
+            <div class="field-shell">
+              <input type="number" id="resGuests" name="resGuests" min="1" max="30" placeholder="Ex. 2" required>
+            </div>
+            <span class="field-error" id="err-resGuests">Veuillez indiquer au moins 1 personne.</span>
+          </div>
+
+          <div class="form-group full">
+            <label>Emplacement souhaité</label>
+            <div class="radio-pill-group" role="radiogroup" aria-label="Emplacement souhaité">
+              <label class="radio-pill">
+                <input type="radio" name="seating" value="Intérieur" checked>
+                <span>Intérieur</span>
+              </label>
+              <label class="radio-pill">
+                <input type="radio" name="seating" value="Extérieur">
+                <span>Extérieur</span>
+              </label>
+              <label class="radio-pill">
+                <input type="radio" name="seating" value="Pas de préférence">
+                <span>Pas de préférence</span>
+              </label>
+            </div>
+          </div>
+
+          <div class="form-group full">
+            <label for="resOccasion">Occasion spéciale</label>
+            <div class="field-shell">
+              <select id="resOccasion" name="resOccasion">
+                <option value="Aucune">Aucune</option>
+                <option value="Anniversaire">Anniversaire</option>
+                <option value="Anniversaire de mariage">Anniversaire de mariage</option>
+                <option value="Réunion d'affaires">Réunion d'affaires</option>
+                <option value="Autre">Autre</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group full">
+            <label for="resNotes">Demandes particulières</label>
+            <div class="field-shell">
+              <textarea id="resNotes" name="resNotes" placeholder="Allergies, préférences de table, informations complémentaires..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="consent-row">
+          <input type="checkbox" id="resConsent" name="resConsent" required>
+          <label for="resConsent">Je comprends que ma réservation est soumise à la confirmation du restaurant.</label>
+        </div>
+
+        <button type="submit" class="btn-reserve" id="reserveBtn" disabled>
+          <span class="btn-spinner" aria-hidden="true"></span>
+          <span class="btn-label">Réserver la table</span>
+        </button>
+
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
 <!-- ============ LOCATION ============ -->
 <section class="location" id="localisation">
   <div class="section-head reveal">
@@ -728,6 +1059,7 @@
           <li><a href="#apropos">À propos</a></li>
           <li><a href="#menu">Menu</a></li>
           <li><a href="#galerie">Galerie</a></li>
+          <li><a href="#reservation">Réservation</a></li>
         </ul>
       </div>
       <div>
@@ -1287,6 +1619,188 @@ document.addEventListener('keydown', e => {
   if(e.key === 'ArrowLeft') stepLightbox(-1);
   if(e.key === 'ArrowRight') stepLightbox(1);
 });
+
+/* ============ RESERVATION ============ */
+
+/* Restaurant WhatsApp number — edit this single constant to update the destination. */
+const RESTAURANT_WHATSAPP_NUMBER = '21622626249';
+
+(function initReservation(){
+  const form = document.getElementById('reservationForm');
+  if(!form) return;
+
+  const fields = {
+    resName:   document.getElementById('resName'),
+    resPhone:  document.getElementById('resPhone'),
+    resDate:   document.getElementById('resDate'),
+    resTime:   document.getElementById('resTime'),
+    resGuests: document.getElementById('resGuests'),
+  };
+  const consent = document.getElementById('resConsent');
+  const reserveBtn = document.getElementById('reserveBtn');
+  const formStatus = document.getElementById('formStatus');
+
+  /* Set the date input's minimum to today so past dates can't be picked. */
+  const todayISO = new Date().toISOString().split('T')[0];
+  fields.resDate.setAttribute('min', todayISO);
+
+  /* ---------- Reveal-on-scroll entrance for the reservation section ---------- */
+  /* Uses the same .reveal mechanism already wired up elsewhere on the page. */
+
+  /* ---------- Enable/disable the submit button based on consent ---------- */
+  function updateButtonState(){
+    reserveBtn.disabled = !consent.checked;
+  }
+  consent.addEventListener('change', updateButtonState);
+  updateButtonState();
+
+  /* ---------- Field-level validation helpers ---------- */
+  function setInvalid(fieldEl, isInvalid){
+    const group = fieldEl.closest('.form-group');
+    if(!group) return;
+    group.classList.toggle('invalid', isInvalid);
+  }
+
+  /* Opening hours the restaurant actually serves — keep in sync with the info card text above. */
+  const OPENING_TIME = '12:00';
+  const CLOSING_TIME = '23:00';
+
+  function isValidTunisianPhone(value){
+    /* Tunisian numbers: 8 digits starting with 2, 3, 4, 5, 7 or 9 (mobile & landline),
+       optionally prefixed with +216 or 00216 and with spaces/dots/dashes anywhere. */
+    const cleaned = value.replace(/[\s.\-()]/g, '');
+    return /^(?:\+216|00216)?[234579]\d{7}$/.test(cleaned);
+  }
+
+  function isTimeWithinHours(value){
+    if(!value) return false;
+    return value >= OPENING_TIME && value <= CLOSING_TIME;
+  }
+
+  function validateField(name){
+    const el = fields[name];
+    let valid = true;
+    switch(name){
+      case 'resName':
+        valid = el.value.trim().length >= 2;
+        break;
+      case 'resPhone':
+        valid = isValidTunisianPhone(el.value.trim());
+        break;
+      case 'resDate':
+        valid = !!el.value && el.value >= todayISO;
+        break;
+      case 'resTime':
+        valid = isTimeWithinHours(el.value);
+        break;
+      case 'resGuests':
+        valid = !!el.value && Number(el.value) >= 1;
+        break;
+    }
+    setInvalid(el, !valid);
+    return valid;
+  }
+
+  Object.keys(fields).forEach(name=>{
+    const el = fields[name];
+    el.addEventListener('blur', ()=> validateField(name));
+    el.addEventListener('input', ()=>{
+      if(el.closest('.form-group').classList.contains('invalid')) validateField(name);
+    });
+  });
+
+  function validateAll(){
+    let allValid = true;
+    Object.keys(fields).forEach(name=>{
+      if(!validateField(name)) allValid = false;
+    });
+    return allValid;
+  }
+
+  /* ---------- Build the professional WhatsApp message ---------- */
+  function buildWhatsAppMessage(data){
+    return [
+      '🍽️ *Nouvelle demande de réservation*',
+      '',
+      `👤 Nom: ${data.name}`,
+      `📞 Téléphone: ${data.phone}`,
+      `📅 Date: ${data.date}`,
+      `🕒 Heure: ${data.time}`,
+      `👥 Personnes: ${data.guests}`,
+      `🪑 Emplacement: ${data.seating}`,
+      `🎉 Occasion: ${data.occasion}`,
+      `📝 Demandes particulières: ${data.notes || 'Aucune'}`,
+      '',
+      'Merci de bien vouloir confirmer ma réservation.'
+    ].join('\n');
+  }
+
+  function formatDateFR(iso){
+    if(!iso) return '';
+    const [y,m,d] = iso.split('-');
+    return `${d}/${m}/${y}`;
+  }
+
+  /* ---------- Small success ripple on the button ---------- */
+  function spawnRipple(btn, evt){
+    const rect = btn.getBoundingClientRect();
+    const ripple = document.createElement('span');
+    ripple.className = 'ripple';
+    const size = Math.max(rect.width, rect.height);
+    ripple.style.width = ripple.style.height = size + 'px';
+    const x = (evt && evt.clientX ? evt.clientX - rect.left : rect.width/2) - size/2;
+    const y = (evt && evt.clientY ? evt.clientY - rect.top : rect.height/2) - size/2;
+    ripple.style.left = x + 'px';
+    ripple.style.top = y + 'px';
+    btn.appendChild(ripple);
+    setTimeout(()=> ripple.remove(), 750);
+  }
+
+  function showStatus(message){
+    formStatus.textContent = message;
+    formStatus.classList.add('show');
+  }
+
+  /* ---------- Submit handler ---------- */
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+
+    if(!consent.checked || !validateAll()){
+      const firstInvalid = form.querySelector('.form-group.invalid input, .form-group.invalid select');
+      if(firstInvalid) firstInvalid.focus();
+      return;
+    }
+
+    reserveBtn.classList.add('loading');
+    reserveBtn.disabled = true;
+
+    const seatingInput = form.querySelector('input[name="seating"]:checked');
+
+    const data = {
+      name: fields.resName.value.trim(),
+      phone: fields.resPhone.value.trim(),
+      date: formatDateFR(fields.resDate.value),
+      time: fields.resTime.value,
+      guests: fields.resGuests.value.trim(),
+      seating: seatingInput ? seatingInput.value : 'Pas de préférence',
+      occasion: document.getElementById('resOccasion').value,
+      notes: document.getElementById('resNotes').value.trim()
+    };
+
+    const message = buildWhatsAppMessage(data);
+    const whatsappUrl = `https://wa.me/${RESTAURANT_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+    /* Brief, deliberate loading state before handing off to WhatsApp —
+       gives the interaction a premium, considered feel rather than an instant jump. */
+    setTimeout(()=>{
+      reserveBtn.classList.remove('loading');
+      reserveBtn.disabled = !consent.checked;
+      spawnRipple(reserveBtn, e);
+      showStatus('Votre demande est prête — ouverture de WhatsApp...');
+      window.open(whatsappUrl, '_blank', 'noopener');
+    }, 700);
+  });
+})();
 </script>
 </body>
 </html>
